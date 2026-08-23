@@ -3,37 +3,43 @@ const members = [
     name: "Atul",
     role: "Video Editor",
     color: "var(--amber)",
-    bio: "The one behind the edit. Creative, hardworking, and impossible to rattle — the calm in every group's chaos."
+    bio: "The one behind the edit. Creative, hardworking, and impossible to rattle — the calm in every group's chaos.",
+    dp: "atul.jpg"
   },
   {
     name: "Omkar",
     role: "The Constant",
     color: "var(--sky)",
-    bio: "Runs quiet but reliable. The one who actually remembers the plan when everyone else has forgotten it existed."
+    bio: "Runs quiet but reliable. The one who actually remembers the plan when everyone else has forgotten it existed.",
+    dp: "omkar.jpg"
   },
   {
     name: "Ajay",
     role: "Chaos, Managed",
     color: "var(--coral)",
-    bio: "Owner of the group's most legendary gaming chair. Master of the spontaneous plan and the 2am idea."
+    bio: "Owner of the group's most legendary gaming chair. Master of the spontaneous plan and the 2am idea.",
+    dp: "ajay.jpg"
   },
   {
     name: "Abhijeet",
     role: "Video Editor",
     color: "var(--violet)",
-    bio: "Learning the edit alongside Atul, and somehow already the one everyone goes to when they need to talk something through."
+    bio: "Learning the edit alongside Atul, and somehow already the one everyone goes to when they need to talk something through.",
+    dp: "abhi.png"
   },
   {
     name: "Om",
     role: "Graphic Designer",
     color: "var(--lime)",
-    bio: "Turns ideas into visuals that actually look good. Currently on the hunt for the opportunity that matches the talent."
+    bio: "Turns ideas into visuals that actually look good. Currently on the hunt for the opportunity that matches the talent.",
+    dp: "om.jpg"
   },
   {
     name: "Akshat",
     role: "Problem Solver",
     color: "var(--teal)",
-    bio: "Always three trends ahead, with an AI tool ready for literally anything you throw at him."
+    bio: "Always three trends ahead, with an AI tool ready for literally anything you throw at him.",
+    dp: "akshat.jpg"
   }
 ];
 
@@ -54,17 +60,22 @@ members.forEach((m, i) => {
     return `<div class="b" style="height:${h}px; background:${m.color}; animation-delay:${delay}s"></div>`;
   }).join('');
 
-  card.innerHTML = `
-    <div class="card-top">
-      <div class="track-no">0${i+1}</div>
-      <div class="avatar" style="background:${m.color}">${initials(m.name)}</div>
-      <div class="name-block">
-        <div class="name">${m.name}</div>
-        <div class="role" style="color:${m.color}">${m.role}</div>
-      </div>
+card.innerHTML = `
+    <div class="card-bg">
+      <img src="${m.dp}" alt="${m.name}" class="dp-hero">
+      <div class="card-gradient"></div>
     </div>
-    <p class="bio">${m.bio}</p>
-    <div class="mini-wave">${barsHtml}</div>
+    <div class="card-content">
+      <div class="card-top">
+        <div class="track-no">0${i+1}</div>
+        <div class="name-block">
+          <div class="name">${m.name}</div>
+          <div class="role" style="color:${m.color}">${m.role}</div>
+        </div>
+      </div>
+      <p class="bio">${m.bio}</p>
+      <div class="mini-wave">${barsHtml}</div>
+    </div>
   `;
 
   grid.appendChild(card);
