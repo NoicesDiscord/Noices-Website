@@ -127,19 +127,51 @@ function animateWave(){
   requestAnimationFrame(animateWave);
 }
 
-const playBtn = document.getElementById('playBtn');
-playBtn.addEventListener('click', () => {
-  isPlaying = !isPlaying;
-  if (isPlaying){
-    startAudio();
-    playBtn.textContent = '❚❚';
-    playBtn.setAttribute('aria-label', 'Pause ambient loop');
+// ---------- FLOATING BUTTON & AUTOPLAY LOGIC ----------
+const floatBtn = document.getElementById('floatingPlayBtn');
+const floatIcon = floatBtn.querySelector('.icon');
+const floatText = floatBtn.querySelector('.text');
+
+function updateButtonUI() {
+  if (isPlaying) {
+    floatIcon.textContent = '❚❚';
+    floatText.textContent = 'PAUSE';
   } else {
-    stopAudio();
-    playBtn.textContent = '▶';
-    playBtn.setAttribute('aria-label', 'Play ambient loop');
+    floatIcon.textContent = '▶';
+    floatText.textContent = 'PLAY';
     heroWave.querySelectorAll('.bar').forEach(bar => {
       bar.style.animation = 'pulse 1.6s ease-in-out infinite';
     });
   }
+}
+
+// 1. Click anywhere on the document to start the music once
+document.addEventListener('click', function initAudio() {
+  if (!isPlaying) {
+    isPlaying = true;
+    startAudio();
+    updateButtonUI();
+  }
+  document.removeEventListener('click', initAudio); 
+}, { once: true });
+
+// 2. Click the floating button to pause or play manually
+floatBtn.addEventListener('click', (e) => {
+  e.stopPropagation(); // Prevents this click from triggering the document click above
+  
+  // If audioCtx doesn't exist yet, it means they clicked the button before clicking anywhere else
+  if (!audioCtx) {
+    isPlaying = true;
+    startAudio();
+  } else {
+    isPlaying = !isPlaying;
+    if (isPlaying) {
+      audioCtx.resume();
+      audioEl.play();
+      requestAnimationFrame(animateWave);
+    } else {
+      stopAudio();
+    }
+  }
+  updateButtonUI();
 });
