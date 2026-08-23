@@ -330,3 +330,36 @@
   @media (prefers-reduced-motion: reduce){
     .waveform .bar, .mini-wave .b { animation: none !important; }
   }
+
+/* ---------- FLOATING PLAYER BUTTON ---------- */
+.floating-play-btn {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  color: var(--amber);
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  padding: 12px 24px;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+  transition: all 0.25s ease;
+}
+
+.floating-play-btn:hover {
+  background: var(--surface-hover);
+  border-color: var(--amber);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(232, 163, 61, 0.15);
+}
+
+.floating-play-btn .icon {
+  font-size: 11px;
+}
