@@ -93,9 +93,7 @@ function startAudio(){
     analyser.fftSize = 64;
     dataArray = new Uint8Array(analyser.frequencyBinCount);
 
-    // Swap 'ambient-track.mp3' with your actual file path
     audioEl = new Audio('hit-track.mp3'); 
-    audioEl.crossOrigin = "anonymous";
     audioEl.loop = true;
 
     const source = audioCtx.createMediaElementSource(audioEl);
@@ -159,7 +157,6 @@ document.addEventListener('click', function initAudio() {
 floatBtn.addEventListener('click', (e) => {
   e.stopPropagation(); // Prevents this click from triggering the document click above
   
-  // If audioCtx doesn't exist yet, it means they clicked the button before clicking anywhere else
   if (!audioCtx) {
     isPlaying = true;
     startAudio();
