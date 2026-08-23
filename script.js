@@ -25,7 +25,7 @@ const members = [
     role: "Video Editor",
     color: "var(--violet)",
     bio: "Learning the edit alongside Atul, and somehow already the one everyone goes to when they need to talk something through.",
-    dp: "abhi.png"
+    dp: "abhi.jpg"
   },
   {
     name: "Om",
