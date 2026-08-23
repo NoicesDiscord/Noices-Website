@@ -24,14 +24,14 @@ const members = [
     name: "Abhijeet",
     role: "Video Editor",
     color: "var(--violet)",
-    bio: "Learning the edit alongside Atul, and somehow already the one everyone goes to when they need to talk something through.",
+    bio: "Working alongside Atul doing great and having the exposure to outer world definitely makes him know how to deal with people.",
     dp: "abhi.jpg"
   },
   {
     name: "Om",
     role: "Graphic Designer",
     color: "var(--lime)",
-    bio: "Turns ideas into visuals that actually look good. Currently on the hunt for the opportunity that matches the talent.",
+    bio: "Turns ideas into confusing visuals that actually looks crazy. Currently on the hunt for the opportunity that matches the talent.",
     dp: "om.jpg"
   },
   {
