@@ -152,119 +152,162 @@ h1.title{
   50% { transform: scaleY(1); opacity: 1; }
 }
 
-/* ---------- LINEUP ---------- */
-.lineup{
+/* ---------- LINEUP (CINEMATIC REDESIGN) ---------- */
+.lineup {
   padding: 80px 0 60px;
 }
-.section-head{
-  display:flex;
+.section-head {
+  display: flex;
   align-items: baseline;
   justify-content: space-between;
   border-bottom: 1px solid var(--line);
   padding-bottom: 18px;
-  margin-bottom: 36px;
+  margin-bottom: 48px;
 }
-.section-head h2{
+.section-head h2 {
   font-family: var(--display);
   font-weight: 600;
   font-size: 30px;
   margin: 0;
 }
-.section-head .count{
+.section-head .count {
   font-family: var(--mono);
   font-size: 13px;
   color: var(--ink-faint);
 }
 
-.grid{
+/* 3-Column Grid for Desktop */
+.grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1px;
-  background: var(--line);
-  border: 1px solid var(--line);
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
 }
-@media (max-width: 720px){
-  .grid{ grid-template-columns: 1fr; }
+@media (max-width: 900px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .grid { grid-template-columns: 1fr; }
 }
 
-.card{
+.card {
   background: var(--surface);
-  padding: 30px 28px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
   position: relative;
-  transition: background 0.25s ease;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+  display: flex;
+  flex-direction: column;
   cursor: default;
 }
-.card:hover, .card:focus-within{
-  background: var(--surface-hover);
+.card:hover, .card:focus-within {
+  transform: translateY(-8px);
+  border-color: var(--ink-muted);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.6);
 }
 
-.card-top{
-  display:flex;
-  align-items:center;
+/* Massive Image Container */
+.card-bg {
+  width: 100%;
+  height: 320px;
+  position: relative;
+  overflow: hidden;
+}
+.dp-hero {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(85%) contrast(1.2);
+  transition: filter 0.5s ease, transform 0.5s ease;
+}
+.card:hover .dp-hero {
+  filter: grayscale(0%) contrast(1);
+  transform: scale(1.06);
+}
+
+/* Seamless blend from photo to background */
+.card-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 40%, var(--surface) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.card-content {
+  padding: 0 28px 28px;
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-top {
+  display: flex;
+  align-items: flex-start;
   gap: 16px;
-  margin-bottom: 18px;
+  margin-top: -30px; /* Pulls text up over the image gradient */
+  margin-bottom: 20px;
 }
 
-.track-no{
+.track-no {
   font-family: var(--mono);
-  font-size: 12px;
-  color: var(--ink-faint);
-  min-width: 22px;
+  font-size: 13px;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  color: var(--ink-muted);
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+.card:hover .track-no {
+  color: var(--bg);
+  background: var(--ink);
+  border-color: var(--ink);
 }
 
-.avatar{
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+.name-block { flex: 1; min-width: 0; padding-top: 4px; }
+.name {
   font-family: var(--display);
-  font-weight: 600;
-  font-size: 16px;
-  color: #0b0b0d;
-  flex-shrink: 0;
-}
-
-.name-block{ flex: 1; min-width: 0; }
-.name{
-  font-family: var(--display);
-  font-weight: 600;
-  font-size: 20px;
+  font-weight: 700;
+  font-size: 26px;
   line-height: 1.1;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.8);
 }
-.role{
+.role {
   font-family: var(--mono);
   font-size: 11px;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  margin-top: 4px;
+  margin-top: 6px;
 }
 
-.bio{
+.bio {
   font-size: 14.5px;
   line-height: 1.6;
   color: var(--ink-muted);
-  margin: 0 0 18px;
+  margin: 0 0 24px;
+  flex: 1;
 }
 
-.mini-wave{
-  display:flex;
-  align-items:flex-end;
+.mini-wave {
+  display: flex;
+  align-items: flex-end;
   gap: 3px;
   height: 20px;
 }
-.mini-wave .b{
+.mini-wave .b {
   width: 3px;
   border-radius: 2px;
-  opacity: 0.55;
+  opacity: 0.4;
   transition: transform 0.2s ease, opacity 0.2s ease;
 }
-.card:hover .mini-wave .b{
+.card:hover .mini-wave .b {
   animation: pulse 0.9s ease-in-out infinite;
   opacity: 1;
 }
-
 /* ---------- FOOTER ---------- */
 footer{
   border-top: 1px solid var(--line);
